@@ -1,0 +1,46 @@
+auth:
+  admin:
+    users:
+      - sophiaray
+
+# hub:
+#   extraConfig: |
+#     c.Authenticator.whitelist = {'test1', 'test2', 'test3', 'test3'}
+
+auth:
+  type: github
+  github:
+    clientId: "idasdfasdf"
+    clientSecret: "secretasfsdf"
+    callbackUrl: "https://hub.soph.info/hub/oauth_callback"
+
+proxy:
+  https:
+    hosts:
+      - "hub.soph.info"
+    letsencrypt:
+      contactEmail: s@soph.info
+  secretToken:    "secretasdfasdf"
+
+prePuller:
+  continuous:
+    enabled: true
+
+singleuser:
+  schedulerStrategy: pack
+  image:
+    name: "sophsea/one-day-user"
+    tag: latest
+  lifecycleHooks:
+    postStart:
+      exec:
+        command:  ["gitpuller", "https://github.com/sophiaray/soph-hub-user", "master", "hub_dir"]
+  cpu:
+    limit: 2
+    guarantee: .2
+  memory:
+    limit: 2G
+    guarantee: .5G
+  storage:
+     capacity: 10Gi
+     # type: none # uncomment this line to turn OFF persistent storage
