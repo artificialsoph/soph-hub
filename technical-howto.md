@@ -36,7 +36,7 @@ Follow the steps in [Setting up JupyterHub](http://zero-to-jupyterhub.readthedoc
 When you get to step 4 (where you run `kubectl --namespace=<YOUR-NAMESPACE> get svc`) note the IP address here. You will most likely wish to use this to set up an A-Record. Mine uses Google's domain service and maps my hub to `https://hub.soph.info`. Here's what my A-Record looks like:
 
 | Name | Type | TTL | DATA     |
-|:-----------------------------|
+|------|------|-----|----------|
 | hub | A | 1h | 35.196.121.84 |
 
 Execute any remaining steps.
